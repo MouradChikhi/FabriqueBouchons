@@ -1,2 +1,5 @@
-package Model;public interface Bouchon {
+package Model;
+
+public interface Bouchon {
+    public void fabriquer();
 }
