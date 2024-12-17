@@ -1,17 +1,11 @@
 package Model;
 
-public class FabriqueBouchons {
+public abstract class FabriqueBouchons {
 
-    public Bouchon fabriquerBouchon(String typeBouchon){
-        switch (typeBouchon){
-            case "capsule":
-                return new Capsule();
-                case "bouchonVis":
-                    return new BouchonVis();
-                    case "bouchonLiege":
-                        return new BouchonLiege();
-            default:
-                return null;
-        }
+    public abstract Bouchon fabriquerBouchon();
+    public Bouchon commanderBouchon(){
+        Bouchon bouchon = fabriquerBouchon();
+        return bouchon;
     }
+
 }

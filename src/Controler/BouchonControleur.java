@@ -1,7 +1,6 @@
 package Controler;
 
-import Model.Bouchon;
-import Model.FabriqueBouchons;
+import Model.*;
 import View.BouchonView;
 
 public class BouchonControleur {
@@ -9,8 +8,7 @@ public class BouchonControleur {
         private BouchonView bouchonView;
 
         // Constructeur
-        public BouchonControleur(FabriqueBouchons fabriqueBouchons, BouchonView bouchonView) {
-            this.fabriqueBouchons = fabriqueBouchons;
+        public BouchonControleur( BouchonView bouchonView) {
             this.bouchonView = bouchonView;
         }
 
@@ -23,16 +21,20 @@ public class BouchonControleur {
 
                 switch (choix) {
                     case 1:
-                        fabriquerBouchon("capsule");
+                        fabriqueBouchons = new FabriqueCapsule();
+                        fabriquerBouchon();
                         break;
                     case 2:
-                        fabriquerBouchon("bouchonLiege");
+                        fabriqueBouchons = new FabriqueBouchonLiege();
+                        fabriquerBouchon();
                         break;
                     case 3:
-                        fabriquerBouchon("bouchonVis");
+                        fabriqueBouchons = new FabriqueBouchonVis();
+                        fabriquerBouchon();
                         break;
                     case 4:
                         bouchonView.afficherMessage("Programme terminé. À bientôt !");
+
                         break;
                     default:
                         bouchonView.afficherMessage("Choix invalide. Veuillez réessayer.");
@@ -42,9 +44,8 @@ public class BouchonControleur {
         }
 
         // Méthode pour fabriquer un bouchon
-        private void fabriquerBouchon(String typeBouchon) {
-                Bouchon bouchon = fabriqueBouchons.fabriquerBouchon(typeBouchon);
-                bouchon.fabriquer();
+        private void fabriquerBouchon() {
+            fabriqueBouchons.commanderBouchon().fabriquer();
 
         }
     }
